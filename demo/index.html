@@ -96,7 +96,9 @@
                   'iron-resize': '_onIronResize'
                 },
                 _onIronResize: function() {
-                  console.log('Resized');
+                  this.debounce('resizeDebounce', function() {
+                    console.log('Resized');
+                  }, 16); // Minimize CPU overhead by debouncing the handler
                 }
               });
             });
