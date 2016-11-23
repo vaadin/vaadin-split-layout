@@ -61,8 +61,10 @@ for the `iron-resize` event.
 
 <iron-iconset-svg size="24" name="vaadin-split-layout">
 <svg><defs>
-<g id="more-horiz"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g>
-<g id="more-vert"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g>
+<g id="line-h"><path d="M0 11h32v2h-32v-2z"/></g>
+<g id="line-v"><path d="M11 0h2v32h-2v-32z"/></g>
+<g id="more-h"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g>
+<g id="more-v"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g>
 </defs></svg>
 </iron-iconset-svg>
 
@@ -80,6 +82,7 @@ for the `iron-resize` event.
       :host ::content > * {
         @apply(--layout-flex-auto);
         overflow: auto;
+        @apply(--vaadin-split-layout-content);
       }
 
       #splitter {
@@ -89,42 +92,38 @@ for the `iron-resize` event.
         min-height: 8px;
         min-width: 8px;
         background: #ccc;
+        @apply(--vaadin-split-layout-split);
       }
 
       :host(:not([vertical])) > #splitter {
         @apply(--layout-vertical);
         cursor: ew-resize;
+        @apply(--vaadin-split-layout-split-horizontal);
       }
 
       :host([vertical]) > #splitter {
         @apply(--layout-horizontal);
         cursor: ns-resize;
+        @apply(--vaadin-split-layout-split-vertical);
       }
 
       iron-icon {
         margin: -8px;
+        @apply(--vaadin-split-layout-icon);
       }
 
       #handle-icon-horizontal {
-        display: block;
+        @apply(--vaadin-split-layout-icon-horizontal);
       }
 
       #handle-icon-vertical {
-        display: none;
-      }
-
-      :host([vertical]) > #splitter > #handle-icon-horizontal {
-        display: none;
-      }
-
-      :host([vertical]) > #splitter > #handle-icon-vertical {
-        display: block;
+        @apply(--vaadin-split-layout-icon-vertical);
       }
     </style>
     <content select="[vaadin-split-layout=primary]" id="primary"></content>
     <div id="splitter" on-track="_onHandleTrack" on-down="_preventDefault">
-      <iron-icon id="handle-icon-horizontal" icon="vaadin-split-layout:more-vert"></iron-icon>
-      <iron-icon id="handle-icon-vertical" icon="vaadin-split-layout:more-horiz"></iron-icon>
+      <iron-icon id="handle-icon-horizontal" hidden$="[[vertical]]" icon="[[horizontalIcon]]"></iron-icon>
+      <iron-icon id="handle-icon-vertical" hidden$="[[!vertical]]" icon="[[verticalIcon]]"></iron-icon>
     </div>
     <content select="[vaadin-split-layout=secondary]" id="secondary"></content>
   </template>
@@ -146,6 +145,24 @@ for the `iron-resize` event.
           type: Boolean,
           reflectToAttribute: true,
           value: false
+        },
+
+        /**
+         * The name of the icon to use for the horizontal splitter.
+         * The name should be of the form: `iconset_name:icon_name`.
+         */
+        verticalIcon: {
+          type: String,
+          value: 'vaadin-split-layout:more-h'
+        },
+
+        /**
+         * The name of the icon to use for the horizontal splitter.
+         * The name should be of the form: `iconset_name:icon_name`.
+         */
+        horizontalIcon: {
+          type: String,
+          value: 'vaadin-split-layout:more-v'
         }
       },
 
