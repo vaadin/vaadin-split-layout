@@ -122,7 +122,7 @@ for the `iron-resize` event.
       }
     </style>
     <content select="[vaadin-split-layout=primary]" id="primary"></content>
-    <div id="splitter" on-track="_onHandleTrack" on-down="_preventDefault">
+    <div id="splitter" on-track="_onHandleTrack" on-down="_onDown" on-up="_onUp">
       <iron-icon id="handle-icon-horizontal" icon="vaadin-split-layout:more-vert"></iron-icon>
       <iron-icon id="handle-icon-vertical" icon="vaadin-split-layout:more-horiz"></iron-icon>
     </div>
@@ -147,6 +147,11 @@ for the `iron-resize` event.
           reflectToAttribute: true,
           value: false
         }
+      },
+
+      listeners: {
+        'resize-start': '_rememberAndHideOverflow',
+        'resize-end': '_restoreOverflow'
       },
 
       attached: function() {
@@ -210,8 +215,44 @@ for the `iron-resize` event.
         }
       },
 
-      _preventDefault: function(event) {
+      _onDown: function(event) {
+        this._fireBubbleableEvent('resize-start');
+        this._fireEventToChildren('resize-start');
         event.preventDefault();
+      },
+
+      _onUp: function(event) {
+        this._fireBubbleableEvent('resize-end');
+        this._fireEventToChildren('resize-end');
+      },
+
+      _rememberAndHideOverflow: function() {
+        this._primaryOverflow = this._primaryChild.overflow || '';
+        this._secondaryOverflow = this._secondaryChild.overflow || '';
+        this._primaryChild.style.overflow = 'hidden';
+        this._secondaryChild.style.overflow = 'hidden';
+      },
+
+      _restoreOverflow: function() {
+        this._primaryChild.style.overflow = this._primaryOverflow;
+        this._secondaryChild.style.overflow = this._secondaryOverflow;
+      },
+
+      _fireBubbleableEvent: function(event) {
+        this.fire(event, {}, {
+          node: this,
+          bubbles: true
+        });
+      },
+
+      _fireEventToChildren: function(event) {
+        var children = Polymer.dom(this).querySelectorAll(this.is);
+        for (var i in children) {
+          this.fire(event, {}, {
+            node: children[i],
+            bubbles: false
+          });
+        }
       }
 
     });
