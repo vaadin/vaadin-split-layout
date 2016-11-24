@@ -69,6 +69,10 @@ for the `iron-resize` event.
 <dom-module id="vaadin-split-layout">
   <template>
     <style>
+      :host {
+        overflow: hidden !important;
+      }
+
       :host(:not([vertical])) {
         @apply(--layout-horizontal);
       }
@@ -80,6 +84,7 @@ for the `iron-resize` event.
       :host ::content > * {
         @apply(--layout-flex-auto);
         overflow: auto;
+        flex: 1 1 50%;
       }
 
       #splitter {
