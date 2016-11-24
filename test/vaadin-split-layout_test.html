@@ -23,6 +23,20 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="nested-split-layout">
+      <template>
+        <vaadin-split-layout>
+          <div id="first">some content</div>
+          <div id="second">
+            <vaadin-split-layout vertical>
+              <div id="nested-third">some content</div>
+              <div id="nested-fourth">some content</div>
+            </vaadin-split-layout>
+          </div>
+        </vaadin-split-layout>
+      </template>
+    </test-fixture>
+
     <script>
       var touchDevice = (function() {
         try {
@@ -56,7 +70,12 @@
         }
       }
 
+      function getDistributedNode(el) {
+        return Polymer.dom(el).getDistributedNodes()[0];
+      }
+
       var splitLayout, first, second;
+      var nestedSplitLayout, nestedSplitLayoutChild, nestedFirst, nestedSecond, nestedThird, nestedFourth;
       var initialSizes = {width: 128, height: 128};
 
       describe('container', function() {
@@ -77,10 +96,19 @@
         beforeEach(function(done) {
           splitLayout = fixture('split-layout');
           setTimeout(function() {
-            first = Polymer.dom(splitLayout.$.primary).getDistributedNodes()[0];
-            second = Polymer.dom(splitLayout.$.secondary).getDistributedNodes()[0];
-            done();
+            first = getDistributedNode(splitLayout.$.primary);
+            second = getDistributedNode(splitLayout.$.secondary);
           }, 1);
+
+          nestedSplitLayout = fixture('nested-split-layout');
+          setTimeout(function() {
+            nestedFirst = getDistributedNode(nestedSplitLayout.$.primary);
+            nestedSecond = getDistributedNode(nestedSplitLayout.$.secondary);
+            nestedSplitLayoutChild = nestedSecond.querySelector('vaadin-split-layout');
+            nestedThird = getDistributedNode(nestedSplitLayoutChild.$.primary);
+            nestedFourth = getDistributedNode(nestedSplitLayoutChild.$.secondary);
+            done();
+          }, 10);
         });
 
         it('are distributed', function() {
@@ -110,6 +138,42 @@
         it('have a splitter in between', function() {
           expect(splitLayout.$.splitter.previousElementSibling).to.equal(first);
           expect(splitLayout.$.splitter.nextElementSibling).to.equal(second);
+        });
+
+        it('hide scrollbars of all content elements including children and parents while dragging', function() {
+          dragSplitterAndCheckOverflow(nestedSplitLayout.$.splitter, false);
+          dragSplitterAndCheckOverflow(nestedSplitLayoutChild.$.splitter, true);
+
+          function dragSplitterAndCheckOverflow(splitter, isVertical) {
+            var initialFirstOverflow = nestedFirst.style.overflow;
+            var initialSecondOverflow = nestedSecond.style.overflow;
+            var initialThirdOverflow = nestedThird.style.overflow;
+            var initialFourthOverflow = nestedFourth.style.overflow;
+
+            var d = 10;
+            if (touchDevice) {
+              MockTouchInteractions.touchstart(splitter, MockInteractions.middleOfNode(splitter));
+            } else {
+              MockInteractions.down(splitter, {x: 0, y: 0});
+              // https://github.com/PolymerElements/iron-test-helpers/pull/70
+              MockInteractions.move(splitter, {x: 0, y: 0}, {x: isVertical ? 0 : d, y: isVertical ? d : 0});
+            }
+            expect(nestedFirst.style.overflow).to.equal('hidden');
+            expect(nestedSecond.style.overflow).to.equal('hidden');
+            expect(nestedThird.style.overflow).to.equal('hidden');
+            expect(nestedFourth.style.overflow).to.equal('hidden');
+
+            if (touchDevice) {
+              MockTouchInteractions.touchend(splitter, MockInteractions.middleOfNode(splitter));
+            } else {
+              MockInteractions.up(splitter, {x: 0, y: 0});
+            }
+
+            expect(nestedFirst.style.overflow).to.equal(initialFirstOverflow);
+            expect(nestedSecond.style.overflow).to.equal(initialSecondOverflow);
+            expect(nestedThird.style.overflow).to.equal(initialThirdOverflow);
+            expect(nestedFourth.style.overflow).to.equal(initialFourthOverflow);
+          }
         });
 
       });
@@ -301,8 +365,8 @@
           splitLayout.style.width = initialSizes.width + 'px';
           splitLayout.style.height = initialSizes.height + 'px';
           setTimeout(function() {
-            first = Polymer.dom(splitLayout.$.primary).getDistributedNodes()[0];
-            second = Polymer.dom(splitLayout.$.secondary).getDistributedNodes()[0];
+            first = getDistributedNode(splitLayout.$.primary);
+            second = getDistributedNode(splitLayout.$.secondary);
             done();
           }, 1);
         });
@@ -319,8 +383,8 @@
           splitLayout.style.height = initialSizes.height + 'px';
           splitLayout.vertical = true;
           setTimeout(function() {
-            first = Polymer.dom(splitLayout.$.primary).getDistributedNodes()[0];
-            second = Polymer.dom(splitLayout.$.secondary).getDistributedNodes()[0];
+            first = getDistributedNode(splitLayout.$.primary);
+            second = getDistributedNode(splitLayout.$.secondary);
             done();
           }, 1);
         });

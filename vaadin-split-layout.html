@@ -149,6 +149,11 @@ for the `iron-resize` event.
         }
       },
 
+      listeners: {
+        'resize-start': '_rememberAndHideOverflow',
+        'resize-end': '_restoreOverflow'
+      },
+
       attached: function() {
         this._observer = Polymer.dom(this).observeNodes(this._processChildren);
       },
@@ -196,6 +201,7 @@ for the `iron-resize` event.
             primary: this._primaryChild.getBoundingClientRect()[size],
             secondary: this._secondaryChild.getBoundingClientRect()[size]
           };
+          this._fireUpAndDownEvent('resize-start');
           return;
         }
 
@@ -207,11 +213,41 @@ for the `iron-resize` event.
 
         if (event.detail.state === 'end') {
           delete this._startSize;
+          this._fireUpAndDownEvent('resize-end');
         }
       },
 
       _preventDefault: function(event) {
         event.preventDefault();
+      },
+
+      _rememberAndHideOverflow: function() {
+        this._primaryOverflow = this._primaryChild.overflow || '';
+        this._secondaryOverflow = this._secondaryChild.overflow || '';
+        this._primaryChild.style.overflow = 'hidden';
+        this._secondaryChild.style.overflow = 'hidden';
+      },
+
+      _restoreOverflow: function() {
+        this._primaryChild.style.overflow = this._primaryOverflow;
+        this._secondaryChild.style.overflow = this._secondaryOverflow;
+      },
+
+      _fireUpAndDownEvent: function(event) {
+        // bubbleable event to parents
+        this.fire(event, {}, {
+          node: this,
+          bubbles: true
+        });
+
+        // non-bubbleable event to children
+        var children = Polymer.dom(this).querySelectorAll(this.is);
+        for (var i in children) {
+          this.fire(event, {}, {
+            node: children[i],
+            bubbles: false
+          });
+        }
       }
 
     });
