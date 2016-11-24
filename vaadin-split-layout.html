@@ -70,8 +70,6 @@ Custom property | Description | Default
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../iron-iconset-svg/iron-iconset-svg.html">
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 
 <iron-iconset-svg size="24" name="vaadin-split-layout">
@@ -118,42 +116,33 @@ Custom property | Description | Default
         @apply(--vaadin-split-layout-splitter-vertical);
       }
 
-      :host > #splitter > ::content.icon-horizontal,
-      :host > #splitter > ::content.icon-vertical {
+      #splitter:before {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: var(--primary-background-color, #000);
+        height: 24px;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
         @apply(--vaadin-split-layout-icon);
       }
 
-      :host > #splitter > ::content.icon-horizontal {
-        @apply(--vaadin-split-layout-icon-horizontal);
-      }
-
-      :host > #splitter > ::content.icon-vertical {
+      :host([vertical]) > #splitter:before {
+        content: '⋯';
         @apply(--vaadin-split-layout-icon-vertical);
       }
 
-      :host([vertical]) > #splitter > ::content.icon-horizontal {
-        display: none;
-      }
-
-      :host(:not([vertical])) > #splitter > ::content.icon-vertical {
-        display: none;
+      :host(:not([vertical])) > #splitter:before {
+        content: '⋮';
+        @apply(--vaadin-split-layout-icon-horizontal);
       }
 
     </style>
     <content select="[vaadin-split-layout=primary]" id="primary"></content>
-    <div id="splitter" on-track="_onHandleTrack" on-down="_preventDefault">
-      <content select=".icon-horizontal">
-        <iron-icon class="icon-horizontal" icon="vaadin-split-layout:line-v"></iron-icon>
-      </content>
-      <content select=".icon-vertical">
-        <iron-icon class="icon-vertical" icon="vaadin-split-layout:line-h"></iron-icon>
-      </content>
-    </div>
+    <div id="splitter" on-track="_onHandleTrack" on-down="_preventDefault"></div>
     <content select="[vaadin-split-layout=secondary]" id="secondary"></content>
   </template>
 
@@ -186,10 +175,7 @@ Custom property | Description | Default
       },
 
       _processChildren: function() {
-        var children = this.getEffectiveChildren();
-        var layouts = children.filter(function(child, i) {
-          return !child.classList.contains('icon-vertical') && !child.classList.contains('icon-horizontal');
-        }).forEach(function(child, i) {
+        var children = this.getEffectiveChildren().forEach(function(child, i) {
           if (i == 0) {
             this._primaryChild = child;
             Polymer.dom(child).setAttribute('vaadin-split-layout', 'primary');
