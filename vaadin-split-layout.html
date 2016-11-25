@@ -104,7 +104,7 @@ Custom property | Description | Default
       }
 
       #handle,
-      #splitter ::content > .splitter-icon {
+      #splitter ::content > .splitter-holder {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -121,7 +121,7 @@ Custom property | Description | Default
     </style>
     <content select="[vaadin-split-layout=primary]" id="primary"></content>
     <div id="splitter" on-track="_onHandleTrack" on-down="_preventDefault">
-      <content select=".splitter-icon">
+      <content select=".splitter-holder">
         <svg id="handle" width="2" height="24">
           <rect width="100%" height="100%"></rect>
         </svg>
@@ -161,7 +161,7 @@ Custom property | Description | Default
       _processChildren: function() {
         var children = this.getEffectiveChildren();
         var layouts = children.filter(function(child, i) {
-          return !child.classList.contains('splitter-icon');
+          return !child.classList.contains('splitter-holder');
         }).forEach(function(child, i) {
           if (i == 0) {
             this._primaryChild = child;
