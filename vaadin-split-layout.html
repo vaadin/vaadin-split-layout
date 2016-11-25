@@ -76,6 +76,10 @@ for the `iron-resize` event.
         flex-direction: column;
       }
 
+      :host {
+        overflow: hidden !important;
+      }
+
       :host ::content > * {
         flex: 1 1 auto;
         overflow: auto;
