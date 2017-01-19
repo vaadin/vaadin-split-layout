@@ -8,71 +8,37 @@
 <link rel="import" href="../../paper-styles/default-theme.html">
 <link rel="import" href="../../elements-demo-resources/common.html">
 
+<!-- Menu -->
+<script>
+  window.demos = [
+    {name: 'index', title: 'Basic Examples'},
+    {name: 'custom', title: 'Customization'}
+  ]
+</script>
+<link rel="import" href="../../elements-demo-resources/demo-navigation.html">
+
 <!-- The component to demo -->
 <link rel="import" href="../vaadin-split-layout.html">
 
 <!-- Common styles for all examples -->
-
 <custom-style>
-<style is="custom-style" include="demo-pages-shared-styles">
-  html {
-    --primary-color: #00B4F0;
-    --light-primary-color: #7CD8F7;
-    --dark-primary-color: #0078A0;
-    --error-color: #E61E6E;
-  }
+  <style is="custom-style">
 
-  vaadin-split-layout > div,
-  vaadin-split-layout > custom-resizable {
-    @apply --layout;
-    @apply --layout-center-center;
-  }
+    vaadin-split-layout > div,
+    vaadin-split-layout > custom-resizable {
+      @apply --layout;
+      @apply --layout-center-center;
+    }
 
-  vaadin-split-layout {
-    height: 160px;
-    background: #eee;
-  }
+    vaadin-split-layout {
+      height: 160px;
+      background: #eee;
+    }
 
-  nav {
-    display: block;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  }
 
-  nav.vertical-section {
-    margin: 0 0 20px;
-    padding: 8px 20px 0;
-    text-transform: uppercase;
-  }
+    paper-button {
+      margin-bottom: 15px;
+    }
 
-  nav > ul {
-    padding: 0;
-  }
-
-  nav > ul > li {
-    padding: 0 24px 8px 0;
-    list-style: none;
-  }
-
-  nav a,
-  nav b {
-    @apply --paper-font-button;
-  }
-
-  nav a {
-    color: var(--primary-color);
-    text-decoration: none;
-  }
-
-  nav b {
-    color: var(--secondary-text-color);
-  }
-
-  paper-button {
-    margin-bottom: 15px;
-  }
-
-  .centered {
-    max-width: 600px;
-  }
-</style>
+  </style>
 </custom-style>
