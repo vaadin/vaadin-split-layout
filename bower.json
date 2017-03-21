@@ -30,8 +30,7 @@
     "iron-icon": "^1.0.9",
     "iron-icons": "^1.2.0",
     "paper-button": "^1.0.14",
-    "web-component-tester": "6.0.0-prerelease.7",
-    "webcomponentsjs": "^0.7.23"
+    "web-component-tester": "6.0.0-prerelease.7"
   },
   "variants": {
     "polymer2": {
@@ -46,8 +45,7 @@
         "iron-test-helpers": "#2.0-preview",
         "iron-icon": "#2.0-preview",
         "iron-icons": "#2.0-preview",
-        "paper-button": "#2.0-preview",
-        "webcomponentsjs": "#v1"
+        "paper-button": "#2.0-preview"
       }
     }
   }
