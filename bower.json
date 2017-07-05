@@ -44,5 +44,8 @@
         "webcomponentsjs": "^0.7.24"
       }
     }
+  },
+  "resolutions": {
+    "iron-doc-viewer": "1 - 2"
   }
 }
