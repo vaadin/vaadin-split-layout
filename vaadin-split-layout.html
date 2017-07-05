@@ -12,9 +12,10 @@ This program is available under Apache License Version 2.0, available at https:/
 <dom-module id="vaadin-split-layout-default-theme" theme-for="vaadin-split-layout">
   <template>
     <style>
-      [part="handle"] {
-        width: 40px;
-        height: 40px;
+      [part="splitter"] {
+        min-width: 8px;
+        min-height: 8px;
+        background: #ccc;
       }
 
       [part="handle"]::after {
@@ -57,9 +58,9 @@ This program is available under Apache License Version 2.0, available at https:/
         position: relative;
         z-index: 1;
         overflow: visible;
-        min-width: 8px;
-        min-height: 8px;
-        background: #ccc;
+        min-width: 2px;
+        min-height: 2px;
+        background: black;
       }
 
       :host(:not([vertical])) > [part="splitter"] {
@@ -72,6 +73,8 @@ This program is available under Apache License Version 2.0, available at https:/
 
       [part="handle"] {
         position: absolute;
+        width: 40px;
+        height: 40px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
