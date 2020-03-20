@@ -8,7 +8,7 @@
 <!-- Example: `vaadin-split-layout` throws error. -->
 
 ### Live Demo
-<!-- The template, click "Remix This" to edit it: https://glitch.com/edit/#!/smiling-stem -->
+<!-- The template, click "Remix This" to edit it: https://glitch.com/edit/#!/vaadin-split-layout-demo -->
 
 ### Steps to reproduce
 <!-- Example
@@ -22,6 +22,5 @@
 - [ ] Firefox
 - [ ] Safari
 - [ ] Edge
-- [ ] IE 11
 - [ ] iOS Safari
 - [ ] Android Chrome

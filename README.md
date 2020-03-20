@@ -1,13 +1,3 @@
-[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-split-layout)](https://www.npmjs.com/package/@vaadin/vaadin-split-layout)
-[![Bower version](https://badgen.net/github/release/vaadin/vaadin-split-layout)](https://github.com/vaadin/vaadin-split-layout/releases)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-split-layout)
-[![Build status](https://travis-ci.org/vaadin/vaadin-split-layout.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-split-layout)
-[![Coverage Status](https://coveralls.io/repos/github/vaadin/vaadin-split-layout/badge.svg?branch=master)](https://coveralls.io/github/vaadin/vaadin-split-layout?branch=master)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-split-layout)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/vaadinvaadin-split-layout.svg)](https://vaadin.com/directory/component/vaadinvaadin-split-layout)
-
 # &lt;vaadin-split-layout&gt;
 
 [Live Demo ↗](https://vaadin.com/components/vaadin-split-layout/html-examples)
@@ -16,28 +6,19 @@
 
 [&lt;vaadin-split-layout&gt;](https://vaadin.com/components/vaadin-split-layout) is a Web Component implementing a split layout for two content elements with a draggable splitter between them, part of the [Vaadin components](https://vaadin.com/components).
 
-<!---
-```
-<custom-element-demo height="218">
-  <template>
-    <style>
-      vaadin-split-layout {
-        height: 200px;
-      }
-      vaadin-split-layout > div {
-        font-family: sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    </style>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="vaadin-split-layout.html">
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
+[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-split-layout)](https://www.npmjs.com/package/@vaadin/vaadin-split-layout)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-split-layout)
+[![Build status](https://travis-ci.org/vaadin/vaadin-split-layout.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-split-layout)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-split-layout)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/vaadinvaadin-split-layout.svg)](https://vaadin.com/directory/component/vaadinvaadin-split-layout)
+
+> ⚠️ This is a pre-release version built with [`LitElement`](https://github.com/Polymer/lit-element), part of the [next generation of Vaadin web components](https://vaadin.com/blog/next-generation-vaadin-components).
+>
+> Looking for Vaadin 14 compatible version? Please see the following branches:
+> - [4.1 branch](https://github.com/vaadin/vaadin-split-layout/tree/4.1) (latest stable)
+> - [4.2 branch](https://github.com/vaadin/vaadin-split-layout/tree/4.2) (next minor version with incremental improvements)
+
 ```html
 <vaadin-split-layout>
   <vaadin-split-layout orientation="vertical">
@@ -54,28 +35,6 @@
 [<img src="https://raw.githubusercontent.com/vaadin/vaadin-split-layout/master/screenshot.png" width="616" alt="Screenshot of vaadin-split-layout">](https://vaadin.com/components/vaadin-split-layout)
 
 ## Installation
-
-The Vaadin components are distributed as Bower and npm packages.
-Please note that the version range is the same, as the API has not changed.
-You should not mix Bower and npm versions in the same application, though.
-
-Unlike the official Polymer Elements, the converted Polymer 3 compatible Vaadin components
-are only published on npm, not pushed to GitHub repositories.
-
-### Polymer 2 and HTML Imports Compatible Version
-
-Install `vaadin-split-layout`:
-
-```sh
-bower i vaadin/vaadin-split-layout --save
-```
-
-Once installed, import it in your application:
-
-```html
-<link rel="import" href="bower_components/vaadin-split-layout/vaadin-split-layout.html">
-```
-### Polymer 3 and ES Modules Compatible Version
 
 Install `vaadin-split-layout`:
 
@@ -99,43 +58,38 @@ To use the Material theme, import the correspondent file from the `theme/materia
 
 - The component with the Lumo theme:
 
-  `theme/lumo/vaadin-split-layout.html`
+  `theme/lumo/vaadin-split-layout.js`
 
 - The component with the Material theme:
 
-  `theme/material/vaadin-split-layout.html`
+  `theme/material/vaadin-split-layout.js`
 
-- Alias for `theme/lumo/vaadin-split-layout.html`:
+- Alias for `theme/lumo/vaadin-split-layout.js`:
 
-  `vaadin-split-layout.html`
+  `vaadin-split-layout.js`
 
 
-## Running demos and tests in a browser
+## Running demos and API docs in a browser
 
 1. Fork the `vaadin-split-layout` repository and clone it locally.
 
-1. Make sure you have [npm](https://www.npmjs.com/) and [Bower](https://bower.io) installed.
+1. Make sure you have [npm](https://www.npmjs.com/) installed.
 
-1. When in the `vaadin-split-layout` directory, run `npm install` and then `bower install` to install dependencies.
-
-1. Make sure you have [polymer-cli](https://www.npmjs.com/package/polymer-cli) installed globally: `npm i -g polymer-cli`.
+1. When in the `vaadin-split-layout` directory, run `npm install` to install dependencies.
 
 1. Run `npm start`, browser will automatically open the component API documentation.
-
-1. You can also open demo or in-browser tests by adding **demo** or **test** to the URL, for example:
-
-  - http://127.0.0.1:3000/components/vaadin-split-layout/demo
-  - http://127.0.0.1:3000/components/vaadin-split-layout/test
 
 
 ## Running tests from the command line
 
-1. When in the `vaadin-split-layout` directory, run `polymer test`
+- When in the `vaadin-split-layout` directory, run `npm test`
+
+- To debug tests in the browser, run `npm run test:debug`
 
 
 ## Following the coding style
 
-We are using [ESLint](http://eslint.org/) for linting JavaScript code. You can check if your code is following our standards by running `npm run lint`, which will automatically lint all `.js` files as well as JavaScript snippets inside `.html` files.
+We are using [ESLint](http://eslint.org/) for linting TypeScript code. You can check if your code is following our standards by running `npm run lint`, which will automatically lint all `.ts` files.
 
 
 ## Big Thanks

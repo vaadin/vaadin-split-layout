@@ -3,4 +3,12 @@ node_modules
 package-lock.json
 yarn.lock
 coverage
-analysis.json
+custom-elements.json
+vaadin-*.js
+/src/**/*.js
+/theme/**/*.js
+/test/**/*.js
+*.d.ts
+*.map
+/dist
+entrypoint.hashmanifest.json
