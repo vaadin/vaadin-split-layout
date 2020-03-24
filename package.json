@@ -46,7 +46,7 @@
     "gemini": "gemini update test/visual",
     "lint": "npm-run-all --parallel lint:*",
     "lint:css": "stylelint src/*.ts theme/**/*.ts test/*.ts",
-    "lint:js": "eslint src test --ext .ts --ignore-path .gitignore",
+    "lint:js": "eslint src theme test --ext .ts --ignore-path .gitignore",
     "lint:lit": "lit-analyzer src --strict",
     "prestart": "npm run analyze",
     "prepublishOnly": "npm run build",
