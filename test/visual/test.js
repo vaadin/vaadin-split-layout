@@ -22,4 +22,11 @@ gemini.suite('vaadin-split-layout', rootSuite => {
         .capture('customized');
     });
   });
+
+  gemini.suite('lumo-variants', suite => {
+    suite
+      .setUrl('lumo.html')
+      .setCaptureElements('#variants')
+      .capture('variants');
+  });
 });

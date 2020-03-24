@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Split layout default tests</title>
+  <style>
+    vaadin-split-layout {
+      height: 100px;
+      width: 200px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="variants">
+    <vaadin-split-layout theme="small">
+      <div style="width: 25%"></div>
+      <vaadin-split-layout orientation="vertical" theme="small" style="width: 75%">
+        <div></div>
+        <div></div>
+      </vaadin-split-layout>
+    </vaadin-split-layout>
+    <vaadin-split-layout theme="minimal">
+      <div style="width: 25%; background: #ddd"></div>
+      <vaadin-split-layout orientation="vertical" theme="minimal" style="width: 75%;">
+        <div></div>
+        <div style="background: #e2e2e2"></div>
+      </vaadin-split-layout>
+    </vaadin-split-layout>
+  </div>
+
+
+  <script type="module">
+    import '../../theme/lumo/vaadin-split-layout.js';
+
+    (async() => {
+      const layout = document.querySelector('vaadin-split-layout');
+
+      await layout.updateComplete;
+
+      window.requestAnimationFrame(() => {
+        window.webComponentsAreReady = true;
+      });
+    })();
+  </script>
+
+</body>
+</html>
