@@ -271,25 +271,27 @@ describe('split-layout', () => {
           expect(spy).to.be.calledOnce;
         });
 
-        (isVertical ? describe.skip : describe)('RTL mode', () => {
-          beforeEach(() => {
-            layout.setAttribute('dir', 'rtl');
-          });
+        if (!isVertical) {
+          describe('RTL mode', () => {
+            beforeEach(() => {
+              layout.setAttribute('dir', 'rtl');
+            });
 
-          it('should resize forwards', () => {
-            dragHandle(distance);
-            expect(Math.abs(second.getBoundingClientRect()[size] - (initialSize + distance))).to.be.at.most(1);
-            expect(Math.abs(first.getBoundingClientRect()[size] - (initialSize - distance))).to.be.at.most(1);
-          });
+            it('should resize forwards', () => {
+              dragHandle(distance);
+              expect(Math.abs(second.getBoundingClientRect()[size] - (initialSize + distance))).to.be.at.most(1);
+              expect(Math.abs(first.getBoundingClientRect()[size] - (initialSize - distance))).to.be.at.most(1);
+            });
 
-          it('should resize backwards', () => {
-            dragHandle(distance);
-            dragHandle(-distance);
+            it('should resize backwards', () => {
+              dragHandle(distance);
+              dragHandle(-distance);
 
-            expect(Math.abs(second.getBoundingClientRect()[size] - initialSize)).to.be.at.most(1);
-            expect(Math.abs(first.getBoundingClientRect()[size] - initialSize)).to.be.at.most(1);
+              expect(Math.abs(second.getBoundingClientRect()[size] - initialSize)).to.be.at.most(1);
+              expect(Math.abs(first.getBoundingClientRect()[size] - initialSize)).to.be.at.most(1);
+            });
           });
-        });
+        }
       });
     }
 
