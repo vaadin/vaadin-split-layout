@@ -5,6 +5,19 @@ import { track } from './track-helpers';
 
 const { sinon } = window;
 
+declare global {
+  interface ShadyDOM {
+    inUse: boolean;
+  }
+
+  interface Window {
+    ShadyDOM?: ShadyDOM;
+  }
+}
+
+// TODO: drop Edge 18 from karma.conf.js for SauceLabs
+const isEdge = window.ShadyDOM && window.ShadyDOM.inUse;
+
 describe('split-layout', () => {
   let layout: VaadinSplitLayout;
   let splitter: HTMLElement;
@@ -68,6 +81,22 @@ describe('split-layout', () => {
 
     it('should set overflow: visible on the splitter', () => {
       expect(getComputedStyle(splitter).overflow).to.equal('visible');
+    });
+
+    (isEdge ? it.skip : it)('should reset flex on first element when removed', async () => {
+      track(splitter, 10, 0);
+      expect(first.getAttribute('style')).to.not.equal('');
+      layout.removeChild(first);
+      await nextFrame();
+      expect(first.getAttribute('style')).to.equal('');
+    });
+
+    (isEdge ? it.skip : it)('should reset flex on second element when removed', async () => {
+      track(splitter, 10, 0);
+      expect(second.getAttribute('style')).to.not.equal('');
+      layout.removeChild(second);
+      await nextFrame();
+      expect(second.getAttribute('style')).to.equal('');
     });
   });
 
@@ -136,6 +165,18 @@ describe('split-layout', () => {
       touchend(splitter);
       expect(getComputedStyle(first).pointerEvents).to.equal('visible');
       expect(getComputedStyle(second).pointerEvents).to.equal('visible');
+    });
+
+    (isEdge ? it.skip : it)('should reset slot attribute on first element when removed', async () => {
+      layout.removeChild(first);
+      await nextFrame();
+      expect(first.hasAttribute('slot')).to.be.false;
+    });
+
+    (isEdge ? it.skip : it)('should reset slot attribute on second element when removed', async () => {
+      layout.removeChild(second);
+      await nextFrame();
+      expect(second.hasAttribute('slot')).to.be.false;
     });
   });
 
