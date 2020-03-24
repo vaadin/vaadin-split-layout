@@ -10,7 +10,7 @@ addons:
 script:
 
 - if [[ "$TRAVIS_EVENT_TYPE" != "pull_request" ]]; then
-    npm run test:sauce && npm run test:visual;
+    npm run test:sauce;
   else
     npm run check:version &&
     npm run lint &&
