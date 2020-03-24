@@ -114,6 +114,14 @@ export const SplitLayoutMixin = <T extends Constructor<LitElement>>(base: T): T 
       // Avoid calling method multiple times
       // after setting attribute on children
       if (!this._processing) {
+        [this._primaryChild, this._secondaryChild].forEach((child, i) => {
+          if (child && child.parentElement !== this) {
+            child.style.flex = '';
+            child.removeAttribute('slot');
+            this[i === 0 ? '_primaryChild' : '_secondaryChild'] = undefined;
+          }
+        });
+
         this._processing = true;
         Array.from(this.children).forEach((node, i) => {
           const child = node as HTMLElement;
