@@ -83,7 +83,7 @@ export const SplitLayoutMixin = <T extends Constructor<LitElement>>(base: T): T 
       this._setFlexBasis(this._primaryChild, primary + dirDistance, container);
       this._setFlexBasis(this._secondaryChild, secondary - dirDistance, container);
 
-      if (event.detail.state === 'end') {
+      if (state === 'end') {
         this.dispatchEvent(new CustomEvent('splitter-dragend'));
       }
     }
