@@ -69,7 +69,7 @@ describe('split-layout', () => {
       expect(getComputedStyle(layout).display).to.equal('flex');
     });
 
-    it('should set flex: auto on the content elements', () => {
+    it('should set "flex: auto" on the content elements', () => {
       const getComputedFlexStyle = (el: HTMLElement) => {
         const style = getComputedStyle(el);
         return style.flex || [style.flexGrow, style.flexShrink, style.flexBasis].join(' ');
@@ -79,7 +79,7 @@ describe('split-layout', () => {
       expect(getComputedFlexStyle(second)).to.equal('1 1 auto');
     });
 
-    it('should set overflow: visible on the splitter', () => {
+    it('should set "overflow: visible" on the splitter', () => {
       expect(getComputedStyle(splitter).overflow).to.equal('visible');
     });
 
@@ -126,10 +126,10 @@ describe('split-layout', () => {
       const prev = splitter.previousElementSibling as HTMLSlotElement;
       const next = splitter.nextElementSibling as HTMLSlotElement;
       expect(prev.assignedNodes({ flatten: true })[0]).to.equal(first);
-      expect(next.assignedNodes({ flatten: true })[0] || next).to.equal(second);
+      expect(next.assignedNodes({ flatten: true })[0]).to.equal(second);
     });
 
-    it('should set pointer-events: none to panels on mousedown event', () => {
+    it('should set "pointer-events: none" to panels on mousedown event', () => {
       first.style.pointerEvents = 'visible';
       second.style.pointerEvents = 'visible';
 
@@ -148,7 +148,7 @@ describe('split-layout', () => {
       expect(getComputedStyle(second).pointerEvents).to.equal('visible');
     });
 
-    it('should set pointer-events: none to panels on touchstart event', () => {
+    it('should set "pointer-events: none" to panels on touchstart event', () => {
       first.style.pointerEvents = 'visible';
       second.style.pointerEvents = 'visible';
 
