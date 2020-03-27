@@ -2,13 +2,36 @@
 
 <html>
   <head>
-    <title>vaadin-split-layout</title>
+    <title>&lt;vaadin-split-layout&gt;</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../iron-component-page/iron-component-page.html">
+    <style>
+      body {
+        margin: 0;
+      }
+
+      api-viewer {
+        margin: 1rem auto 0;
+      }
+
+      @media(max-width: 799px) {
+        api-viewer {
+          margin: 0;
+        }
+      }
+    </style>
   </head>
   <body>
-    <iron-component-page src="vaadin-split-layout.html"></iron-component-page>
+    <api-viewer src="custom-elements.json">
+      <template data-element="vaadin-split-layout" data-target="slot">
+        <div style="min-width: 100px; min-height: 50px">First content</div>
+        <div>Second content</div>
+      </template>
+    </api-viewer>
+
+    <script type="module" src="./vaadin-split-layout.ts"></script>
+    <script type="module">
+      import 'api-viewer-element';
+    </script>
   </body>
 </html>
