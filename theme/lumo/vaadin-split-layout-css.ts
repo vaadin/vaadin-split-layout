@@ -67,8 +67,8 @@ export const splitLayoutStyles = css`
     left: -4px;
   }
 
-  :host([theme~='small']) > [part='splitter'] > [part='handle']::after,
-  :host([theme~='minimal']) > [part='splitter'] > [part='handle']::after {
+  :host([theme~='small']) [part='handle']::after,
+  :host([theme~='minimal']) [part='handle']::after {
     opacity: 0;
   }
 
