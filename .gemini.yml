@@ -1,10 +1,10 @@
-rootUrl: http://localhost:8080/components/vaadin-split-layout/test/visual/
+rootUrl: http://localhost:8080/test/visual/
 gridUrl: http://localhost:4444/wd/hub
 screenshotsDir: ./test/visual/screens
 
 system:
   plugins:
-    polyserve:
+    esm:
       port: 8080
     sauce: true
 
@@ -12,11 +12,5 @@ browsers:
   chrome:
     desiredCapabilities:
       browserName: "chrome"
-      version: "67.0"
-      platform: "Windows 10"
-
-  firefox:
-    desiredCapabilities:
-      browserName: "firefox"
-      version: "47.0"
+      version: "69.0"
       platform: "Windows 10"
