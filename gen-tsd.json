@@ -5,5 +5,10 @@
     "demo/**/*",
     "test/**/*",
     "theme/**/*"
-  ]
+  ],
+  "autoImport": {
+    "./@types/interfaces": [
+      "SplitLayoutOrientation"
+    ]
+  }
 }
