@@ -241,6 +241,7 @@ This program is available under Apache License Version 2.0, available at https:/
           return {
             /**
              * The split layout's orientation. Possible values are: `horizontal|vertical`.
+             * @type {!SplitLayoutOrientation}
              */
             orientation: {
               type: String,
@@ -262,7 +263,7 @@ This program is available under Apache License Version 2.0, available at https:/
           new Polymer.FlattenedNodesObserver(this, this._processChildren);
         }
 
-        /** @protected */
+        /** @private */
         _processChildren() {
           this.getEffectiveChildren().forEach((child, i) => {
             if (i === 0) {
