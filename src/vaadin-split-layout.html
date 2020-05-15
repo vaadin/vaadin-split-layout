@@ -348,6 +348,8 @@ This program is available under Apache License Version 2.0, available at https:/
          * resizables of a resize change.
          */
         notifyResize() {
+          // NOTE: we have this method here to include it to TypeScript definitions.
+          // gen-typescript-declarations does not generate types for `mixinBehaviors`
           super.notifyResize();
         }
 
