@@ -25,7 +25,7 @@ export const SplitLayoutMixin = <T extends Constructor<LitElement>>(base: T): T 
 
     private _startSize = { container: 0, primary: 0, secondary: 0 };
 
-    private _oldPointerEvents: Array<string | null> = ['', ''];
+    private _oldPointerEvents = ['', ''];
 
     protected render() {
       return html`
@@ -94,7 +94,7 @@ export const SplitLayoutMixin = <T extends Constructor<LitElement>>(base: T): T 
         return;
       }
 
-      this._oldPointerEvents = [primary.style.pointerEvents, secondary.style.pointerEvents];
+      this._oldPointerEvents = [primary.style.pointerEvents || '', secondary.style.pointerEvents || ''];
 
       primary.style.pointerEvents = 'none';
       secondary.style.pointerEvents = 'none';
