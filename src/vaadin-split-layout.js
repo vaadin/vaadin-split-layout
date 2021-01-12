@@ -341,16 +341,6 @@ class SplitLayoutElement extends
   }
 
   /**
-   * Can be called to manually notify a resizable and its descendant
-   * resizables of a resize change.
-   */
-  notifyResize() {
-    // NOTE: we have this method here to include it to TypeScript definitions.
-    // gen-typescript-declarations does not generate types for `mixinBehaviors`
-    super.notifyResize();
-  }
-
-  /**
    * Fired when the splitter is dragged. Non-bubbling. Fired for the splitter
    * element and any nested elements with `IronResizableBehavior`.
    *
