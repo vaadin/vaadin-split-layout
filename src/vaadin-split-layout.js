@@ -222,11 +222,6 @@ class SplitLayoutElement extends ElementMixin(
         <div part="handle"></div>
       </div>
       <slot id="secondary" name="secondary"></slot>
-
-      <div hidden="">
-        <!-- Workaround to fix a Shady style scoping issue caused by dynamic slot naming of the child elements (primary/secondary) -->
-        <slot></slot>
-      </div>
     `;
   }
 
