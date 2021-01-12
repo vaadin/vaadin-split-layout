@@ -1,18 +1,8 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-
 import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
-
-import {FlattenedNodesObserver} from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-
-import {IronResizableBehavior} from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
 import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
-
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-
-import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * `<vaadin-split-layout>` is a Web Component implementing a split layout for two
@@ -161,13 +151,12 @@ declare class SplitLayoutElement extends
   ElementMixin(
   ThemableMixin(
   GestureEventListeners(
-  PolymerElement))) {
+  HTMLElement))) {
 
   /**
    * The split layout's orientation. Possible values are: `horizontal|vertical`.
    */
   orientation: SplitLayoutOrientation;
-  ready(): void;
 
   /**
    * Can be called to manually notify a resizable and its descendant
