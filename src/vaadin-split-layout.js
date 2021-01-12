@@ -159,71 +159,75 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.
  * @mixes ThemableMixin
  * @mixes GestureEventListeners
  */
-class SplitLayoutElement extends
-  ElementMixin(
-    ThemableMixin(
-      GestureEventListeners(
-        mixinBehaviors([IronResizableBehavior], PolymerElement)))) {
+class SplitLayoutElement extends ElementMixin(
+  ThemableMixin(GestureEventListeners(mixinBehaviors([IronResizableBehavior], PolymerElement)))
+) {
   static get template() {
     return html`
-    <style>
-      :host {
-        display: flex;
-        overflow: hidden !important;
-        transform: translateZ(0);
-      }
+      <style>
+        :host {
+          display: flex;
+          overflow: hidden !important;
+          transform: translateZ(0);
+        }
 
-      :host([hidden]) {
-        display: none !important;
-      }
+        :host([hidden]) {
+          display: none !important;
+        }
 
-      :host([orientation="vertical"]) {
-        flex-direction: column;
-      }
+        :host([orientation='vertical']) {
+          flex-direction: column;
+        }
 
-      :host ::slotted(*) {
-        flex: 1 1 auto;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-      }
+        :host ::slotted(*) {
+          flex: 1 1 auto;
+          overflow: auto;
+          -webkit-overflow-scrolling: touch;
+        }
 
-      [part="splitter"] {
-        flex: none;
-        position: relative;
-        z-index: 1;
-        overflow: visible;
-        min-width: 8px;
-        min-height: 8px;
-      }
+        [part='splitter'] {
+          flex: none;
+          position: relative;
+          z-index: 1;
+          overflow: visible;
+          min-width: 8px;
+          min-height: 8px;
+        }
 
-      :host(:not([orientation="vertical"])) > [part="splitter"] {
-        cursor: ew-resize;
-      }
+        :host(:not([orientation='vertical'])) > [part='splitter'] {
+          cursor: ew-resize;
+        }
 
-      :host([orientation="vertical"]) > [part="splitter"] {
-        cursor: ns-resize;
-      }
+        :host([orientation='vertical']) > [part='splitter'] {
+          cursor: ns-resize;
+        }
 
-      [part="handle"] {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0);
-      }
-    </style>
-    <slot id="primary" name="primary"></slot>
-    <div part="splitter" id="splitter" on-track="_onHandleTrack" on-down="_setPointerEventsNone" on-up="_restorePointerEvents">
-      <div part="handle"></div>
-    </div>
-    <slot id="secondary" name="secondary"></slot>
+        [part='handle'] {
+          width: 40px;
+          height: 40px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate3d(-50%, -50%, 0);
+        }
+      </style>
+      <slot id="primary" name="primary"></slot>
+      <div
+        part="splitter"
+        id="splitter"
+        on-track="_onHandleTrack"
+        on-down="_setPointerEventsNone"
+        on-up="_restorePointerEvents"
+      >
+        <div part="handle"></div>
+      </div>
+      <slot id="secondary" name="secondary"></slot>
 
-    <div hidden="">
-      <!-- Workaround to fix a Shady style scoping issue caused by dynamic slot naming of the child elements (primary/secondary) -->
-      <slot></slot>
-    </div>
-`;
+      <div hidden="">
+        <!-- Workaround to fix a Shady style scoping issue caused by dynamic slot naming of the child elements (primary/secondary) -->
+        <slot></slot>
+      </div>
+    `;
   }
 
   static get is() {

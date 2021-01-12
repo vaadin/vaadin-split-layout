@@ -1,8 +1,8 @@
-import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
 /**
  * `<vaadin-split-layout>` is a Web Component implementing a split layout for two
@@ -147,16 +147,11 @@ import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
-declare class SplitLayoutElement extends
-  ElementMixin(
-  ThemableMixin(
-  GestureEventListeners(
-  HTMLElement))) {
-
+declare class SplitLayoutElement extends ElementMixin(ThemableMixin(GestureEventListeners(HTMLElement))) {
   /**
    * The split layout's orientation. Possible values are: `horizontal|vertical`.
    */
-  orientation: 'horizontal' | 'vertical';
+  orientation: 'horizontal' | 'vertical';
 
   /**
    * Can be called to manually notify a resizable and its descendant
@@ -166,10 +161,9 @@ declare class SplitLayoutElement extends
 }
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "vaadin-split-layout": SplitLayoutElement;
+    'vaadin-split-layout': SplitLayoutElement;
   }
 }
 
-export {SplitLayoutElement};
+export { SplitLayoutElement };
