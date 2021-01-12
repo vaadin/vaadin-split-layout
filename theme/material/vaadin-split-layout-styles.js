@@ -1,6 +1,7 @@
-<link rel="import" href="../../../vaadin-material-styles/color.html">
+import '@vaadin/vaadin-material-styles/color.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="material-split-layout" theme-for="vaadin-split-layout">
+const $_documentContainer = html`<dom-module id="material-split-layout" theme-for="vaadin-split-layout">
   <template>
     <style>
       [part="splitter"] {
@@ -28,4 +29,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);
