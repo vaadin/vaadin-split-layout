@@ -86,8 +86,12 @@ describe('split layout', () => {
     });
 
     it('should have flex auto', () => {
-      expect(getComputedStyle(first).flex).to.equal('1 1 auto');
-      expect(getComputedStyle(second).flex).to.equal('1 1 auto');
+      function getComputedFlexStyle(el) {
+        const style = getComputedStyle(el);
+        return style.flex || [style.flexGrow, style.flexShrink, style.flexBasis].join(' ');
+      }
+      expect(getComputedFlexStyle(first)).to.equal('1 1 auto');
+      expect(getComputedFlexStyle(second)).to.equal('1 1 auto');
     });
 
     it('should have a splitter in between', () => {
