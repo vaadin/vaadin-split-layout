@@ -156,7 +156,7 @@ declare class SplitLayoutElement extends
   /**
    * The split layout's orientation. Possible values are: `horizontal|vertical`.
    */
-  orientation: SplitLayoutOrientation;
+  orientation: 'horizontal' | 'vertical';
 
   /**
    * Can be called to manually notify a resizable and its descendant
@@ -173,5 +173,3 @@ declare global {
 }
 
 export {SplitLayoutElement};
-
-import {SplitLayoutOrientation} from '../@types/interfaces';

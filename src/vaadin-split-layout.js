@@ -238,7 +238,7 @@ class SplitLayoutElement extends
     return {
       /**
        * The split layout's orientation. Possible values are: `horizontal|vertical`.
-       * @type {!SplitLayoutOrientation}
+       * @type {string}
        */
       orientation: {
         type: String,
