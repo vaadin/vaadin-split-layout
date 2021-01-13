@@ -4,6 +4,12 @@ import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mix
 
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
+export interface SplitLayoutElementEventMap {
+  'splitter-dragend': Event;
+}
+
+export interface SplitLayoutEventMap extends HTMLElementEventMap, SplitLayoutElementEventMap {}
+
 /**
  * `<vaadin-split-layout>` is a Web Component implementing a split layout for two
  * content elements with a draggable splitter between them.
@@ -158,6 +164,18 @@ declare class SplitLayoutElement extends ElementMixin(ThemableMixin(GestureEvent
    * resizables of a resize change.
    */
   notifyResize(): void;
+
+  addEventListener<K extends keyof SplitLayoutEventMap>(
+    type: K,
+    listener: (this: SplitLayoutElement, ev: SplitLayoutEventMap[K]) => void,
+    options?: boolean | AddEventListenerOptions
+  ): void;
+
+  removeEventListener<K extends keyof SplitLayoutEventMap>(
+    type: K,
+    listener: (this: SplitLayoutElement, ev: SplitLayoutEventMap[K]) => void,
+    options?: boolean | EventListenerOptions
+  ): void;
 }
 
 declare global {
