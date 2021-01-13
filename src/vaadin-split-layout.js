@@ -136,13 +136,6 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.
  * </vaadin-split-layout>
  * ```
  *
- * ### Resize Notification
- *
- * This element implements `IronResizableBehavior` to notify the nested resizables
- * when the splitter is dragged. In order to define a resizable and receive that
- * notification in a nested element, include `IronResizableBehavior` and listen
- * for the `iron-resize` event.
- *
  * ### Styling
  *
  * The following shadow DOM parts are available for styling:
@@ -339,6 +332,16 @@ class SplitLayoutElement extends ElementMixin(
 
       delete this._startSize;
     }
+  }
+
+  /**
+   * Can be called to manually notify a resizable and its descendant
+   * resizables of a resize change.
+   */
+  notifyResize() {
+    // NOTE: we have this method here to include it to the API docs,
+    // as we do not use `IronResizableBehavior` in type definitions.
+    super.notifyResize();
   }
 
   /**
