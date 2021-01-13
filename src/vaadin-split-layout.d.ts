@@ -152,6 +152,8 @@ export interface SplitLayoutEventMap extends HTMLElementEventMap, SplitLayoutEle
  * `handle` | The handle of the splitter | vaadin-split-layout
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
+ *
+ * @fires {Event} splitter-dragend - Fired after dragging the splitter have ended.
  */
 declare class SplitLayoutElement extends ElementMixin(ThemableMixin(GestureEventListeners(HTMLElement))) {
   /**

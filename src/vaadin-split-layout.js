@@ -154,6 +154,8 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  *
+ * @fires {Event} splitter-dragend - Fired after dragging the splitter have ended.
+ *
  * @extends HTMLElement
  * @mixes ElementMixin
  * @mixes ThemableMixin
