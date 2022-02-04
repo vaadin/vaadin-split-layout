@@ -260,7 +260,17 @@ This program is available under Apache License Version 2.0, available at https:/
         /** @protected */
         ready() {
           super.ready();
-          new Polymer.FlattenedNodesObserver(this, this._processChildren);
+          new Polymer.FlattenedNodesObserver(this, (info) => {
+            this._cleanupNodes(info.removedNodes);
+            this._processChildren();
+          });
+        }
+
+        /** @private */
+        _cleanupNodes(nodes) {
+          nodes.forEach((node) => {
+            node.removeAttribute('slot');
+          });
         }
 
         /** @private */
