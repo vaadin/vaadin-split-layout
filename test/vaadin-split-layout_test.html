@@ -398,6 +398,24 @@
 
       });
 
+      describe('removing nodes', () => {
+        beforeEach(done => {
+          splitLayout = fixture('split-layout');
+          setTimeout(() => {
+            first = splitLayout.$.primary.assignedNodes({flatten: true})[0];
+            second = splitLayout.$.secondary.assignedNodes({flatten: true})[0];
+            done();
+          }, 1);
+        });
+
+        it('should remove slot attribute from the removed node', (done) => {
+          splitLayout.removeChild(first);
+          setTimeout(() => {
+            expect(first.hasAttribute('slot')).to.be.false;
+            done();
+          });
+        });
+      });
     </script>
   </body>
 </html>
